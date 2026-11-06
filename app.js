@@ -175,7 +175,6 @@ async function placeOrShoot(i) {
     return cur;
   });
 }
-}
 async function setReady(){await update(ref(db,`rooms/${roomId}/state/ready`),{[player]:true});}
 function el(tag,cls,text){let e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e;}
 function cell(text){return el("button","cell",text);}
