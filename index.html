@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090909">
+  <title>DUO ARCADE — Play Together</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">D</span><span>DUO<span class="gold"> ARCADE</span></span></a>
+    <span class="online-pill"><i></i> ONLINE PLAY</span>
+  </header>
+
+  <main>
+    <section id="home" class="screen active">
+      <div class="hero">
+        <p class="eyebrow">TWO PLAYERS · ONE LINK · INFINITE FUN</p>
+        <h1>Play together.<br><span class="gold">Anywhere.</span></h1>
+        <p class="sub">Pick a game, create a room, and invite your friend.</p>
+      </div>
+      <div class="games-grid">
+        <button class="game-card" data-game="tictactoe"><span class="game-icon">✕ ○</span><span class="game-name">Tic-Tac-Toe</span><span class="game-desc">Classic quick match</span><span class="play-label">PLAY <b>↗</b></span></button>
+        <button class="game-card" data-game="connect4"><span class="game-icon">🔴 🟡</span><span class="game-name">Connect 4</span><span class="game-desc">Connect four to win</span><span class="play-label">PLAY <b>↗</b></span></button>
+        <button class="game-card" data-game="rps"><span class="game-icon">✊ ✋ ✌</span><span class="game-name">Rock Paper Scissors</span><span class="game-desc">Mind games, best of 5</span><span class="play-label">PLAY <b>↗</b></span></button>
+        <button class="game-card" data-game="dots"><span class="game-icon">⠿</span><span class="game-name">Dots & Boxes</span><span class="game-desc">Claim the most squares</span><span class="play-label">PLAY <b>↗</b></span></button>
+        <button class="game-card" data-game="battleship"><span class="game-icon">🚢</span><span class="game-name">Battleship</span><span class="game-desc">Find the hidden fleet</span><span class="play-label">PLAY <b>↗</b></span></button>
+      </div>
+      <div class="setup-note"><span class="note-icon">✦</span><span><b>Room-based multiplayer</b><br>Player 1 creates a room. Player 2 joins with the link or code.</span></div>
+    </section>
+
+    <section id="room" class="screen">
+      <div class="room-head">
+        <button id="backBtn" class="back-btn">← Games</button>
+        <div><p class="eyebrow" id="gameEyebrow">MULTIPLAYER ROOM</p><h2 id="roomGameTitle">Game</h2></div>
+        <div class="room-code"><small>ROOM CODE</small><strong id="roomCode">----</strong><button id="copyBtn">COPY LINK</button></div>
+      </div>
+      <div class="players">
+        <div class="player-card"><span class="player-avatar">P1</span><div><b id="p1name">Player 1</b><small id="p1status">Room host</small></div><span class="player-symbol" id="p1symbol">X</span></div>
+        <div class="vs">VS</div>
+        <div class="player-card"><span class="player-avatar second">P2</span><div><b id="p2name">Player 2</b><small id="p2status">Waiting to join…</small></div><span class="player-symbol" id="p2symbol">O</span></div>
+      </div>
+      <div id="gameStatus" class="game-status">Create a room or join one to start.</div>
+      <div id="gameBoard" class="board-wrap"></div>
+      <div class="room-actions"><button id="rematchBtn" class="secondary-btn">↻ Rematch</button><button id="leaveBtn" class="secondary-btn">Leave room</button></div>
+      <p class="tiny-help">Moves sync live through Firebase. Keep this page open while playing.</p>
+    </section>
+
+    <section id="join" class="screen">
+      <div class="join-panel">
+        <button id="joinBackBtn" class="back-btn">← Games</button>
+        <div class="brand-mark large">D</div>
+        <p class="eyebrow">JOIN YOUR FRIEND</p><h2>Enter room code</h2>
+        <p class="sub">Ask the host for their 4–6 character code.</p>
+        <input id="joinCodeInput" maxlength="6" placeholder="ROOM CODE" autocomplete="off">
+        <button id="joinRoomBtn" class="primary-btn">JOIN ROOM ↗</button>
+        <p id="joinError" class="error"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer><span>DUO ARCADE</span><span>Built for friends, not distance.</span></footer>
+  <div id="toast" class="toast"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
