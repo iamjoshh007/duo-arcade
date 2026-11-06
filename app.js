@@ -1,5 +1,13 @@
 import { db } from "./firebase.js";
-import { ref, set, get, onValue, update, runTransaction, remove } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import {
+  ref,
+  set,
+  get,
+  onValue,
+  update,
+  runTransaction,
+  remove
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-database.js";
 
 const $ = (id) => document.getElementById(id);
 const names = {tictactoe:"Tic-Tac-Toe",connect4:"Connect 4",rps:"Rock Paper Scissors",dots:"Dots & Boxes",battleship:"Battleship"};
