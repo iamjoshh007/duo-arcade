@@ -129,8 +129,52 @@ function drawBattleship(root,s){
  let ready=document.createElement("button");ready.className="secondary-btn";ready.textContent=s.ready?.[player]?"Fleet ready ✓":"Ready (3 ships)";ready.disabled=!!s.ready?.[player]||!(s.ships?.[player]?.length===3);ready.onclick=()=>setReady();wrap.append(ready);
  root.append(wrap);
 }
-async function placeOrShoot(i){
- await runTransaction(ref(db,`rooms/${roomId}/state`),cur=>{if(!cur||cur.winner||cur.ready?.[player])return;let ships=cur.ships?.[player]||[];if(ships.length<3){if(!ships.includes(i))cur.ships={...(cur.ships||{}),[player]:[...ships,i]};}else if(cur.ready?.[player]&&cur.turn===player){let opp=player===1?2:1;if(cur.shots?.[opp]?.[i])return;let hit=(cur.ships?.[opp]||[]).includes(i);cur.shots={...(cur.shots||{}),[opp]:{...(cur.shots?.[opp]||{}),[i]:hit?"hit":"miss"}};let hits=Object.values(cur.shots[opp]).filter(x=>x==="hit").length;if(hits>=3)cur.winner=player;else cur.turn=opp;}return cur;});
+async function placeOrShoot(i) {
+  await runTransaction(ref(db, `rooms/${roomId}/state`), cur => {
+    if (!cur || cur.winner) return;
+
+    let ships = cur.ships?.[player] || [];
+
+    // Place ships
+    if (!cur.ready?.[player]) {
+      if (ships.length < 3 && !ships.includes(i)) {
+        cur.ships = {
+          ...(cur.ships || {}),
+          [player]: [...ships, i]
+        };
+      }
+      return cur;
+    }
+
+    // Shoot opponent
+    if (cur.turn !== player) return;
+
+    let opp = player === 1 ? 2 : 1;
+
+    if (cur.shots?.[opp]?.[i]) return;
+
+    let hit = (cur.ships?.[opp] || []).includes(i);
+
+    cur.shots = {
+      ...(cur.shots || {}),
+      [opp]: {
+        ...(cur.shots?.[opp] || {}),
+        [i]: hit ? "hit" : "miss"
+      }
+    };
+
+    let hits = Object.values(cur.shots[opp])
+      .filter(x => x === "hit").length;
+
+    if (hits >= 3) {
+      cur.winner = player;
+    } else {
+      cur.turn = opp;
+    }
+
+    return cur;
+  });
+}
 }
 async function setReady(){await update(ref(db,`rooms/${roomId}/state/ready`),{[player]:true});}
 function el(tag,cls,text){let e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e;}
