@@ -52,7 +52,9 @@ function subscribeRoom(){
     roomData=snap.val();selectedGame=roomData.game;renderRoom();
   },err=>toast("Connection error: "+err.message));
 }
-function firebaseReady(){return !["PASTE_YOUR_API_KEY","PASTE_YOUR_PROJECT"].some(v=>JSON.stringify(v).includes("PASTE")) && window.firebaseReady!==false;}
+function firebaseReady() {
+  return true;
+}
 function renderRoom(){
   $("roomGameTitle").textContent=names[selectedGame]||"Game";
   $("roomCode").textContent=roomId;
