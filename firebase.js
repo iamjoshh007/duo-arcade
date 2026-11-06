@@ -21,7 +21,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+const db = getDatabase(app,"https://duo-arcade-37dcb-default-rtdb.firebaseio.com");
 
 export {
   app,
