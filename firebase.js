@@ -1,17 +1,35 @@
-// 1) Create a Firebase project at https://console.firebase.google.com/
-// 2) Add a Web App and paste its config below.
-// 3) Enable Realtime Database (test mode while developing; secure rules before public launch).
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+
+import {
+  getDatabase,
+  ref,
+  set,
+  get,
+  update,
+  onValue,
+  remove
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "PASTE_YOUR_API_KEY",
-  authDomain: "PASTE_YOUR_PROJECT.firebaseapp.com",
-  databaseURL: "https://PASTE_YOUR_PROJECT-default-rtdb.firebaseio.com",
-  projectId: "PASTE_YOUR_PROJECT",
-  appId: "PASTE_YOUR_APP_ID"
+  apiKey: "AIzaSyDjy4yO8H0kwMTUxSfxUnMyMliJv1OAtGo",
+  authDomain: "duo-arcade-37dcb.firebaseapp.com",
+  projectId: "duo-arcade-37dcb",
+  storageBucket: "duo-arcade-37dcb.firebasestorage.app",
+  messagingSenderId: "1077016969496",
+  appId: "1:1077016969496:web:93f7b9ccf3578393005e6d"
 };
 
 const app = initializeApp(firebaseConfig);
-export const db = getDatabase(app);
-export const configured = !firebaseConfig.apiKey.startsWith("PASTE") && !firebaseConfig.projectId.startsWith("PASTE");
+const db = getDatabase(app);
+
+export {
+  app,
+  db,
+  ref,
+  set,
+  get,
+  update,
+  onValue,
+  remove
+};
